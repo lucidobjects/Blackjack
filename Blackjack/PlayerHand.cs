@@ -52,7 +52,7 @@ namespace Blackjack
 
         public void Bet(decimal chips) => Wager += chips;
 
-        public void Double()
+        public void SetAsDoubled()
         {
             IsDoubled = true;
             IsStood = true;

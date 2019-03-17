@@ -89,7 +89,7 @@ namespace Blackjack
             return bet;
         }
 
-        public bool WantsToSplit(string name)=> YesNo($"\n{name} would you like to split? ");        
+        public bool WantsToSplit(string name)=> YesNo($"{name} would you like to split? ");        
 
         public eActions PlayerFirst(Player player)
         {
@@ -97,7 +97,7 @@ namespace Blackjack
 
             if (player.HasBettableChips)
             {
-                Console.Write($"\n{player.Name} what's your play? hit, stand, or double  ");
+                Console.Write($"{player.Name} what's your play? hit, stand, or double  ");
                 while (action == eActions.None)
                 {
                     action = toInitialAction(Console.ReadKey().KeyChar);
@@ -115,7 +115,7 @@ namespace Blackjack
         public eActions PlayerNext(Player player)
         {
             var action = eActions.None;
-            Console.Write($"\n{player.Name} what's your play? hit or stand ");
+            Console.Write($"{player.Name} what's your play? hit or stand ");
             while(action == eActions.None)
             {
                 action = toNextAction(Console.ReadKey().KeyChar);
