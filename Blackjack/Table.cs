@@ -13,10 +13,11 @@ namespace Blackjack
         public static readonly int NumberOfDecksInShoe = 6;                
         public static readonly int DealerHardStandValue = 17;
         public static readonly int DealerSoftStandValue = 18;
-        public static readonly int MaxSplitHands = 4;
-        public static readonly bool SingleCardOnSplitAces = true;
+        public static readonly int MaxSplitHands = 4;        
         public static readonly decimal BlackjackPayout = 1.5M;
-        public static readonly decimal InsurancePayout = 2M;
+        //future
+        //public static readonly bool SingleCardOnSplitAces = true;
+        //public static readonly decimal InsurancePayout = 2M;
 
         public Dealer Dealer { get; private set; }
         public Shoe Shoe { get; private set; }

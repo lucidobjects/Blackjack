@@ -10,7 +10,8 @@ namespace Blackjack
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-
+            
+            //to enter or leave test mode, toggle the commenting on these two lines
             var runTests = false;
             //var runTests = true;
 
