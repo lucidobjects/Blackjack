@@ -63,21 +63,6 @@ namespace Blackjack
             
             table.Draw();
         }
-      
-        private void depart(Table table, List<Player> leavingPlayers)
-        {
-            leavingPlayers.ForEach(p =>
-            {
-                Console.WriteLine($"{p.Name} has left the table.");
-                Console.WriteLine($"{p.Name} stats: {p.ToStatsString()}");
-                table.Leave(p);
-            });
-            if (leavingPlayers.Any())
-            {
-                Console.Write("Press any key to continue... ");
-                Console.ReadKey(true);
-            }            
-        }
 
         public void DealInitial(Table table)
         {
@@ -137,13 +122,6 @@ namespace Blackjack
                 hand.Stand();
                 table.Draw();
             }
-        }
-
-        private static void showCurrentHand(PlayerHand hand, string name)
-        {
-            Console.WriteLine($"\nCurrent hand for {name}");
-            hand.Draw();
-            Console.WriteLine();
         }
 
         public void Play(Table table, DealerHand hand)
@@ -410,6 +388,28 @@ namespace Blackjack
             postHandPause();
             Sweep(h, table.Tray);
             table.Draw();
+        }
+
+        private void depart(Table table, List<Player> leavingPlayers)
+        {
+            leavingPlayers.ForEach(p =>
+            {
+                Console.WriteLine($"{p.Name} has left the table.");
+                Console.WriteLine($"{p.Name} stats: {p.ToStatsString()}");
+                table.Leave(p);
+            });
+            if (leavingPlayers.Any())
+            {
+                Console.Write("Press any key to continue... ");
+                Console.ReadKey(true);
+            }
+        }
+
+        private void showCurrentHand(PlayerHand hand, string name)
+        {
+            Console.WriteLine($"\nCurrent hand for {name}");
+            hand.Draw();
+            Console.WriteLine();
         }
 
         private void reset() => Hand = new DealerHand();
