@@ -1,5 +1,5 @@
 # Blackjack
-Inspired by: https://codereview.stackexchange.com/questions/214390/my-blackjack-game-in-c-console
+Inspired by: https://codereview.stackexchange.com/questions/214390/my-blackjack-game-in-c-console  
 Thanks Steve!
 
 ## Features
