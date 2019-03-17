@@ -19,6 +19,8 @@ Thanks Steve!
 5. Play your hand. 
     * If you split you'll see multiple hands.
 	* Answer dealer prompts with the first letter of the word (e.g. h for hit, s for stand).
+	* If you have less than your original bet, you will automatically double or split "for less".
+	* If all your chips are already bet, double and split stop being options.
 6. Play continues until you run out of chips or you bet $0 to stand up from the table.
 
 ## Misc  
