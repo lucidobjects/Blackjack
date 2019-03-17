@@ -58,7 +58,7 @@ namespace Blackjack
 
                 Dealer.PlaceYourBets(Table);
 
-                if (Table.HasPlayers) //all players may have bet $0 to leave.
+                if (Table.HasPlayers) //all players may have gone broke or bet $0.
                 {
                     if (!shoe.SuppressShuffle && (!Table.GameHasStarted || shoe.IsEmpty))
                     {
@@ -66,12 +66,11 @@ namespace Blackjack
                         Thread.Sleep(3000);
                         Dealer.Shuffle(shoe, Table.Tray);
                         shoe.Slice(Dealer.Slice());
-                        Dealer.Burn(shoe.Next(), Table.Tray);
                         Table.StartGame();
+                        Dealer.Burn(shoe.Next(), Table.Tray);                        
                     }
 
                     Dealer.DealInitial(Table);
-                    Table.Draw();
 
                     if (Dealer.MayHaveBlackjack())
                     {

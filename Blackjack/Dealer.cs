@@ -33,6 +33,7 @@ namespace Blackjack
 
             depart(table, table.BrokePlayers);
         }
+
         public void PlaceYourBets(Table table)
         {
             var leavingPlayers = new List<Player>();
@@ -78,8 +79,6 @@ namespace Blackjack
             }            
         }
 
-
-
         public void DealInitial(Table table)
         {
             dealAll(table);  //first card
@@ -89,14 +88,13 @@ namespace Blackjack
         public void Play(Table table)
         {
             //pay blackjack winners before playing the other hands
-            table.PlayersWithBlackJack().Select(p=>p.Hand).ToList().ForEach(h => 
-            {
-                table.Pay(h.BlackjackPays);
-                h.Blackjack();
-                postHandPause();
-                Sweep(h, table.Tray);
-                table.Draw();
-            });
+            table.PlayersWithBlackJack()
+                .Select(p => p.Hand)
+                .ToList()
+                .ForEach(h =>
+                {
+                    payBlackjack(table, h);
+                });
 
             table.ActivePlayers.ForEach(p => Play(table, p.Hand));      
         }
@@ -128,67 +126,86 @@ namespace Blackjack
 
             if(action == eActions.Hit)
             {
-                Deal(table.Shoe, hand);
-                Console.WriteLine();
-                table.Draw();
-                while (!hand.IsBusted() && action != eActions.Stand)
-                {
-                    action = interactions.PlayerNext(hand.Player);
-                    if (action == eActions.Hit)
-                    {
-                        Deal(table.Shoe, hand);
-                        Console.WriteLine();
-                        table.Draw();
-                    }
-                }
-                if (action == eActions.Stand)
-                {
-                    hand.Stand();
-                    table.Draw();
-                }
-                else
-                {
-                    checkBust(table, hand);
-                }
-
+                hitAndCompleteTheHand(table, hand);
             }
             else if (action == eActions.Double)
             {
-                //double down gets a single card only
-                var doubleBet = Math.Min(hand.Wager, hand.Player.BettableChips);
-                Console.WriteLine($"Doubling down for ${doubleBet}");
-                hand.Player.Bet(hand, doubleBet);
-                dealPause();
-
-                Deal(table.Shoe, hand);
-                table.Draw();
-                if(hand.IsBusted())
-                {
-                    bust(table, hand);
-                }
-                else
-                {
-                    hand.Double();
-                    table.Draw();
-                }
+                doubleDown(table, hand);
             }
             else if (action == eActions.Split)
             {
-                var newHand = hand.Split();
-                hand.Player.AddSplitHand(newHand);
-                table.Draw();
-                Deal(table.Shoe, hand);
-                table.Draw();
-                Deal(table.Shoe, newHand);
-                table.Draw();
-                Play(table, hand);
-                Play(table, newHand);
+                split(table, hand);
             }
             else if(action == eActions.Stand)
             {
                 hand.Stand();
                 table.Draw();
             }
+        }
+
+        private void hit(Table table, PlayerHand hand)
+        {
+            Deal(table.Shoe, hand);
+            Console.WriteLine();
+            table.Draw();
+        }
+
+        private void hitAndCompleteTheHand(Table table, PlayerHand hand)
+        {
+            var action = eActions.None;
+            hit(table, hand);
+            while (!hand.IsBusted() && action != eActions.Stand)
+            {
+                action = interactions.PlayerNext(hand.Player);
+                if (action == eActions.Hit)
+                {
+                    hit(table, hand);
+                }
+            }
+            if (action == eActions.Stand)
+            {
+                hand.Stand();
+                table.Draw();
+            }
+            else
+            {
+                checkBust(table, hand);
+            }
+        }
+
+        private void doubleDown(Table table, PlayerHand hand)
+        {
+            //double down gets a single card only
+            var doubleBet = Math.Min(hand.Wager, hand.Player.BettableChips);
+            Console.WriteLine($"Doubling down for ${doubleBet}");
+            hand.Player.Bet(hand, doubleBet);
+            dealPause();
+
+            Deal(table.Shoe, hand);
+            table.Draw();
+            if (hand.IsBusted())
+            {
+                bust(table, hand);
+            }
+            else
+            {
+                hand.Double();
+                table.Draw();
+            }
+        }
+
+
+        private void split(Table table, PlayerHand hand)
+        {
+            var newHand = hand.Split();
+            hand.Player.AddSplitHand(newHand);
+            table.Draw();
+            Deal(table.Shoe, hand);
+            table.Draw();
+            Deal(table.Shoe, newHand);
+            table.Draw();
+            Play(table, hand);
+            Play(table, newHand);
         }
 
         public void Play(Table table, DealerHand hand)
@@ -376,6 +393,15 @@ namespace Blackjack
                 table.Draw();
                 postHandPause();
             }
+        }
+
+        private void payBlackjack(Table table, PlayerHand h)
+        {
+            table.Pay(h.BlackjackPays);
+            h.Blackjack();
+            postHandPause();
+            Sweep(h, table.Tray);
+            table.Draw();
         }
 
         private void reset() => Hand = new DealerHand();

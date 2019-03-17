@@ -5,10 +5,31 @@ namespace Blackjack
 {
     public class Interactions
     {
+        private enum eAnswer
+        {
+            None, Yes, No
+        }
+
         public bool YesNo(string message)
         {
-            Console.Write(message);
-            return "yY".Contains(Console.ReadKey().KeyChar);
+            var answer = eAnswer.None;
+
+            while(answer == eAnswer.None)
+            {
+                Console.Write(message);
+                var c = Console.ReadKey().KeyChar;
+                if ("yY".Contains(c))
+                {
+                    answer = eAnswer.Yes;
+                }
+                else if ("nN".Contains(c))
+                {
+                    answer = eAnswer.No;
+                }
+                Console.WriteLine();
+            }
+
+            return answer == eAnswer.Yes;
         }
 
         public Player WelcomePlayer()
