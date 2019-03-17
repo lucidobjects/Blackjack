@@ -11,8 +11,8 @@ namespace Blackjack
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            //var runTests = false;
-            var runTests = true;
+            var runTests = false;
+            //var runTests = true;
 
             if (!runTests)
             {
