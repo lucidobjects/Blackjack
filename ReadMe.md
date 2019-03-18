@@ -3,7 +3,7 @@ Inspired by: https://codereview.stackexchange.com/questions/214390/my-blackjack-
 Thanks Steve!
 
 ## Features
-+ Multi-player
++ Multi-player (local machine, not networked)
 + Multi-deck shoe
 + Player can double
 + Player can split 
