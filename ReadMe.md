@@ -14,13 +14,13 @@ Thanks Steve!
 ## To Play
 1. Run the program.
 2. Enter your name and a bankroll.
-3. Enter and additional players and their bankroll.
-4. Bet (whole dollar amounts only, within the table limits).
+3. Enter any additional players and their bankroll.
+4. Enter your bet (whole dollar amounts only, within the table limits).
 5. Play your hand. 
-    * If you split you'll see multiple hands.
-	* Answer dealer prompts with the first letter of the word (e.g. h for hit, s for stand).
+    * Answer dealer prompts with the first letter of the word (e.g. h for hit, s for stand).
 	* If you have less than your original bet, you will automatically double or split "for less".
 	* If all your chips are already bet, double and split stop being options.
+	* Provided you have the funds, you can split multiple times, up to the table limit.
 6. Play continues until you run out of chips or you bet $0 to stand up from the table.
 
 ## Misc  
