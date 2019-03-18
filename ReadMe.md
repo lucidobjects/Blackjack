@@ -26,7 +26,7 @@ Thanks Steve!
 ## Misc  
 + Table rules are set as static properties on the Table class.
 + Dealer speed can be controled via the Dealer class's delay field.
-+ Object-oriented design - No object can directly touch the internals of another object (i.e. no public setters).
++ Object-oriented design - Objects only change other objects via methods (i.e. no public setters).
 
 ## Features that would be nice to add
 + Insurance
