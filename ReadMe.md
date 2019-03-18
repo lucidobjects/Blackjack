@@ -5,8 +5,8 @@ Thanks Steve!
 ## Features
 + Multi-player
 + Multi-deck shoe
-+ Player can double down
-+ Player can split matching cards 
++ Player can double
++ Player can split 
 + Player can double after split
 + Test mode (stack the shoe to test different scenarios)
 + Dealer burns first card of shoe
