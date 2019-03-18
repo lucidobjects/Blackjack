@@ -89,7 +89,7 @@ namespace Blackjack
             return bet;
         }
 
-        public bool WantsToSplit(string name)=> YesNo($"{name} would you like to split? ");        
+        public bool WantsToSplit(string name)=> YesNo($"{name}, would you like to split? ");        
 
         public eActions PlayerFirst(Player player)
         {

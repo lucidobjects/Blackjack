@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blackjack
 {
@@ -77,10 +75,8 @@ namespace Blackjack
 
         public List<Card> Filter(eCardType type) => Cards.Where(c => c.Type == type).ToList();
 
-        public void SkipShuffle()
-        {
-            SuppressShuffle = true;
-        }
+        public void SkipShuffle() => SuppressShuffle = true;
+
         public void Draw() => Draw(int.MaxValue);
 
         public void Draw(int num) => Top(num).ForEach(c => c.Draw());

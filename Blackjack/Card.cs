@@ -29,8 +29,6 @@ namespace Blackjack
             Value2 = value2;
         }
 
-        public string ToValueString() => IsAce ? $"{Value1.ToString()} or {Value2.ToString()}" : Value1.ToString();
-
         public void Draw(bool addSpace = false)
         {
             Console.Write(Token);

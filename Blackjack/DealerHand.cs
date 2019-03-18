@@ -10,7 +10,7 @@ namespace Blackjack
 
         public void IsDealersTurn() => TurnPending = false;
         public Card UpCard() => FirstCard;        
-        public bool HasEligibleUpcard() => HasBeenDealt && (UpCard()?.Type == eCardType.Ace || UpCard()?.Value1 == 10);
+        public bool HasEligibleUpcard() => HasBeenDealt && (UpCard()?.Type == eCardType.Ace || UpCard()?.HasValueOfTen == true);
 
         public void Draw()
         {

@@ -62,12 +62,7 @@ namespace Blackjack
                 {
                     if (!shoe.SuppressShuffle && (!Table.GameHasStarted || shoe.IsEmpty))
                     {
-                        Console.WriteLine("Shuffling...");
-                        Thread.Sleep(3000);
-                        Dealer.Shuffle(shoe, Table.Tray);
-                        shoe.Slice(Dealer.Slice());
-                        Table.StartGame();
-                        Dealer.Burn(shoe.Next(), Table.Tray);                        
+                        shuffle(shoe);
                     }
 
                     Dealer.DealInitial(Table);
@@ -115,6 +110,16 @@ namespace Blackjack
             Table.Draw();
             Table.Sit(interactions.WelcomePlayer());
             Table.Draw();
-        }   
+        }
+
+        private void shuffle(Shoe shoe)
+        {
+            Console.WriteLine("Shuffling...");
+            Thread.Sleep(3000);
+            Dealer.Shuffle(shoe, Table.Tray);
+            shoe.Slice(Dealer.Slice());
+            Table.StartGame();
+            Dealer.Burn(shoe.Next(), Table.Tray);
+        }
     }
 }
