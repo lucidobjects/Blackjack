@@ -211,7 +211,7 @@ namespace Blackjack
             hand.Deal(shoe.Next());
         }
     
-        public bool MayHaveBlackjack() => Hand.HasBeenDealt && Hand.HasEligibleUpcard();
+        public bool MayHaveBlackjack() => Hand.IsPossibleBlackjack();
 
         public bool HasBlackjack()
         {

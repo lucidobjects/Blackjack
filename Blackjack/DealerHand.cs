@@ -4,14 +4,15 @@ using System.Collections.Generic;
 namespace Blackjack
 {
     public class DealerHand : Hand
-    {        
+    {
+        private bool hasEligibleUpcard() => HasBeenDealt && (UpCard()?.Type == eCardType.Ace || UpCard()?.HasValueOfTen == true);
         public bool TurnPending { get; private set; } = true;
         public bool HasUpcard => FirstCard != null;
 
         public void IsDealersTurn() => TurnPending = false;
-        public Card UpCard() => FirstCard;        
-        public bool HasEligibleUpcard() => HasBeenDealt && (UpCard()?.Type == eCardType.Ace || UpCard()?.HasValueOfTen == true);
-
+        public Card UpCard() => FirstCard;
+        public bool IsPossibleBlackjack() => hasEligibleUpcard();
+       
         public void Draw()
         {
             if (TurnPending)
