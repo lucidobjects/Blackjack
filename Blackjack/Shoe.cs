@@ -67,8 +67,10 @@ namespace Blackjack
 
         public void Reload(List<Card> cards) => _cards = cards;
 
-        public void Cut(int cutLocation) => cutCard = 100;
-
+        //Playing until the end of a shoe can give card counters a big advantage
+        //so the dealer places the cut card near the back of the stack of cards 
+        //to stop play before the shoe is empty.
+        //Typical casino protocol is to slice off around 2 decks from the back.
         public void Slice(int sliceLocation) => cutCard = sliceLocation;
 
         public List<Card> Top(int top) => Cards.Take(top).ToList();

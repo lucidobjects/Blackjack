@@ -55,7 +55,7 @@ namespace Blackjack
         public void Draw()
         {
             Console.Clear();
-            Console.WriteLine("The Table");
+            Console.WriteLine($"Blackjack ${MinBet} to ${MaxBet}");
             Dealer.Draw();
             Console.WriteLine("\n");            
             Players.ForEach(p => p.Draw());
